@@ -4,6 +4,7 @@ import textwrap
 import socket
 import textwrap
 import os
+import random
 
 
 def display_text_in_box(text, width=40):
@@ -36,8 +37,11 @@ def is_connected_to_internet():
 
 
 def randomVerse(display_text_in_box):
+    # Pick a random version
+    versions = ["ESV", "NKJV", "NLT", "NRSV"]
+    version = random.choice(versions)
     # Make a request to the dailyverses.net website
-    response = requests.get('https://dailyverses.net/random-bible-verse/kjv')
+    response = requests.get(f'https://dailyverses.net/random-bible-verse/{version}')
 
     # Create a BeautifulSoup object to parse the HTML content
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -60,8 +64,7 @@ def randomVerse(display_text_in_box):
     # blank text
 
     # text wrap
-    verse = verse_text + \
-        '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' + book
+    verse = verse_text + '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' + book + f'\n({version})'
 
     # Print the verse
     display_text_in_box(verse, width=30)
