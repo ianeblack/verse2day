@@ -2,8 +2,28 @@ import requests
 from bs4 import BeautifulSoup
 import textwrap
 import socket
+import textwrap
+import os
+
+
+def display_text_in_box(text, width=40):
+    def print_box_line(line):
+        print(f"┃ {line}{' ' * (width - len(line))} ┃")
+
+    wrapped_text = textwrap.fill(text, width=width)
+    lines = wrapped_text.split('\n')
+    max_line_length = max(len(line) for line in lines)
+
+    box_top_bottom = "━" * (width + 2)
+
+    print(f"┏{box_top_bottom}┓")
+    for line in lines:
+        print_box_line(line)
+    print(f"┗{box_top_bottom}┛")
+
 
 # Check if connected to the internet and run code accordingly
+
 
 def is_connected_to_internet():
     try:
@@ -14,7 +34,8 @@ def is_connected_to_internet():
         pass
     return False
 
-def randomVerse():
+
+def randomVerse(display_text_in_box):
     # Make a request to the dailyverses.net website
     response = requests.get('https://dailyverses.net/random-bible-verse/kjv')
 
@@ -31,18 +52,23 @@ def randomVerse():
     verse_text = verse_element.text.strip()
 
     # Extract the book text
-    book = book_element.text.strip()
+    book_pick = book_element.text.strip()
+
+    # Color the book text
+    book = book_pick
+
+    # blank text
 
     # text wrap
-    verse = textwrap.fill(verse_text, width=30)
+    verse = verse_text + \
+        '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' + book
 
     # Print the verse
-    print("")
-    print(verse)
-    print(book)
-    print("")
+    display_text_in_box(verse, width=30)
+
 
 if is_connected_to_internet():
-    randomVerse()
+    randomVerse(display_text_in_box)
 else:
     pass
+
