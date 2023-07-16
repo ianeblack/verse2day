@@ -13,3 +13,10 @@
     - text display customization
     - should place python file in a folder and write execute in users bash
   - Recognize when God is speaking in a verse and display as red
+
+## Supported Bible versions
+
+- ESV
+- NKJV
+- NLT
+- NRSV
