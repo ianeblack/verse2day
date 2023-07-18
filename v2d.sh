@@ -7,6 +7,7 @@ import textwrap
 import os
 import random
 
+# hey lol
 
 def display_text_in_box(text, width=40):
     def print_box_line(line):
@@ -39,8 +40,9 @@ def is_connected_to_internet():
 
 def randomVerse(display_text_in_box):
     # Pick a random version
-    versions = ["ESV", "NKJV", "NLT", "NRSV"]
-    version = random.choice(versions)
+    versions = ["ESV", "KJV" "NKJV", "NLT", "NRSV"]
+    # version = random.choice(versions)
+    version = "KJV"
     # Make a request to the dailyverses.net website
     response = requests.get(f'https://dailyverses.net/random-bible-verse/{version}')
 
